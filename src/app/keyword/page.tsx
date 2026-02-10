@@ -480,10 +480,10 @@ export default function KeywordPage() {
             <DialogTitle className="text-lg">키워드 대량 견적 등록</DialogTitle>
           </DialogHeader>
           <div className="grid gap-5 py-4">
-            {/* 작업아웃 */}
+            {/* 작업 이름 */}
             <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
               <Label htmlFor="taskName" className="text-sm">
-                작업아웃
+                작업 이름
               </Label>
               <Input
                 id="taskName"
@@ -491,7 +491,7 @@ export default function KeywordPage() {
                 onChange={(e) =>
                   setFormData({ ...formData, taskName: e.target.value })
                 }
-                placeholder="작업아웃을 입력해 주세요"
+                placeholder="작업 이름을 입력해 주세요"
                 className="flex-1"
               />
             </div>
@@ -555,9 +555,9 @@ export default function KeywordPage() {
                     <SelectTrigger id="pcRank" className="opacity-100">
                       <SelectValue placeholder="PC 순위 선택" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="opacity-100 bg-white">
                       {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((rank) => (
-                        <SelectItem key={rank} value={rank.toString()}>
+                        <SelectItem key={rank} value={rank.toString()} className="opacity-100">
                           {rank}순위
                         </SelectItem>
                       ))}
@@ -578,9 +578,9 @@ export default function KeywordPage() {
                     <SelectTrigger id="mobileRank" className="opacity-100">
                       <SelectValue placeholder="Mobile 순위 선택" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="opacity-100 bg-white">
                       {[1, 2, 3, 4, 5].map((rank) => (
-                        <SelectItem key={rank} value={rank.toString()}>
+                        <SelectItem key={rank} value={rank.toString()} className="opacity-100">
                           {rank}순위
                         </SelectItem>
                       ))}
@@ -685,20 +685,20 @@ export default function KeywordPage() {
 
       {/* 견적 상세 정보 팝업 */}
       <Dialog open={isDetailDialogOpen} onOpenChange={setIsDetailDialogOpen}>
-        <DialogContent className="sm:max-w-[500px]">
+        <DialogContent className="sm:max-w-[600px]">
           <DialogHeader>
-            <DialogTitle>견적 상세 정보</DialogTitle>
+            <DialogTitle className="text-lg">견적 상세 정보</DialogTitle>
           </DialogHeader>
-          <div className="grid gap-4 py-4">
+          <div className="grid gap-5 py-4">
             {selectedItem && (
               <>
-                <div className="grid gap-2">
-                  <Label className="font-medium">작업 이름</Label>
+                <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
+                  <Label className="text-sm">작업 이름</Label>
                   <p className="text-sm text-gray-700">{selectedItem.title}</p>
                 </div>
 
-                <div className="grid gap-2">
-                  <Label className="font-medium">견적 방식</Label>
+                <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
+                  <Label className="text-sm">견적 방식</Label>
                   <p className="text-sm text-gray-700">
                     {selectedItem.estimateMethod}
                   </p>
@@ -706,45 +706,43 @@ export default function KeywordPage() {
 
                 {selectedItem.estimateMethod === '일반 견적' &&
                   selectedItem.estimateDetails && (
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="grid gap-2">
-                        <Label className="font-medium">PC 순위</Label>
+                    <>
+                      <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
+                        <Label className="text-sm">PC 순위</Label>
                         <p className="text-sm text-gray-700">
                           {selectedItem.estimateDetails.pcRank}순위
                         </p>
                       </div>
-                      <div className="grid gap-2">
-                        <Label className="font-medium">Mobile 순위</Label>
+                      <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
+                        <Label className="text-sm">Mobile 순위</Label>
                         <p className="text-sm text-gray-700">
                           {selectedItem.estimateDetails.mobileRank}순위
                         </p>
                       </div>
-                    </div>
+                    </>
                   )}
 
                 {selectedItem.estimateMethod === '최적 견적' &&
                   selectedItem.estimateDetails && (
                     <>
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="grid gap-2">
-                          <Label className="font-medium">PC 예산(원)</Label>
-                          <p className="text-sm text-gray-700">
-                            {selectedItem.estimateDetails.pcBudget &&
-                              formatBudget(selectedItem.estimateDetails.pcBudget)}
-                          </p>
-                        </div>
-                        <div className="grid gap-2">
-                          <Label className="font-medium">Mobile 예산(원)</Label>
-                          <p className="text-sm text-gray-700">
-                            {selectedItem.estimateDetails.mobileBudget &&
-                              formatBudget(
-                                selectedItem.estimateDetails.mobileBudget
-                              )}
-                          </p>
-                        </div>
+                      <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
+                        <Label className="text-sm">PC 예산(원)</Label>
+                        <p className="text-sm text-gray-700">
+                          {selectedItem.estimateDetails.pcBudget &&
+                            formatBudget(selectedItem.estimateDetails.pcBudget)}
+                        </p>
                       </div>
-                      <div className="grid gap-2">
-                        <Label className="font-medium">최적화 기준</Label>
+                      <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
+                        <Label className="text-sm">Mobile 예산(원)</Label>
+                        <p className="text-sm text-gray-700">
+                          {selectedItem.estimateDetails.mobileBudget &&
+                            formatBudget(
+                              selectedItem.estimateDetails.mobileBudget
+                            )}
+                        </p>
+                      </div>
+                      <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
+                        <Label className="text-sm">최적화 기준</Label>
                         <p className="text-sm text-gray-700">
                           {selectedItem.estimateDetails.optimizationCriteria}
                         </p>
@@ -754,8 +752,13 @@ export default function KeywordPage() {
               </>
             )}
           </div>
-          <DialogFooter>
-            <Button onClick={() => setIsDetailDialogOpen(false)}>닫기</Button>
+          <DialogFooter className="gap-2">
+            <Button
+              onClick={() => setIsDetailDialogOpen(false)}
+              className="bg-[#50c0b5] hover:bg-[#45a89f] text-white"
+            >
+              닫기
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
