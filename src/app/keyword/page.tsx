@@ -200,6 +200,37 @@ export default function KeywordPage() {
     optimizationCriteria: '클릭 최대화',
   })
 
+  // 예산 포맷팅 함수
+  const formatBudget = (value: string): string => {
+    if (!value || value === '0') return ''
+    const num = parseInt(value)
+    if (isNaN(num)) return ''
+
+    if (num < 1000) {
+      return `${num.toLocaleString()}원`
+    } else if (num < 10000) {
+      return `${num.toLocaleString()}원`
+    } else if (num < 100000000) {
+      const man = Math.floor(num / 10000)
+      const remainder = num % 10000
+      if (remainder === 0) {
+        return `${man}만원`
+      }
+      return `${man}만원 ${remainder.toLocaleString()}원`
+    } else {
+      const eok = Math.floor(num / 100000000)
+      const remainder = num % 100000000
+      if (remainder === 0) {
+        return `${eok}억원`
+      }
+      const man = Math.floor(remainder / 10000)
+      if (man === 0) {
+        return `${eok}억원`
+      }
+      return `${eok}억원 ${man}만원`
+    }
+  }
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setFormData({ ...formData, file: e.target.files[0] })
@@ -391,6 +422,7 @@ export default function KeywordPage() {
                 onValueChange={(value) =>
                   setFormData({ ...formData, estimateMethod: value })
                 }
+                className="flex flex-row gap-4"
               >
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="일반 견적" id="normal" />
@@ -409,7 +441,7 @@ export default function KeywordPage() {
 
             {/* 일반 견적 조건부 필드 */}
             {formData.estimateMethod === '일반 견적' && (
-              <>
+              <div className="grid grid-cols-2 gap-4">
                 <div className="grid gap-2">
                   <Label htmlFor="pcRank">PC 순위</Label>
                   <Select
@@ -418,7 +450,7 @@ export default function KeywordPage() {
                       setFormData({ ...formData, pcRank: value })
                     }
                   >
-                    <SelectTrigger id="pcRank">
+                    <SelectTrigger id="pcRank" className="opacity-100">
                       <SelectValue placeholder="PC 순위 선택" />
                     </SelectTrigger>
                     <SelectContent>
@@ -439,7 +471,7 @@ export default function KeywordPage() {
                       setFormData({ ...formData, mobileRank: value })
                     }
                   >
-                    <SelectTrigger id="mobileRank">
+                    <SelectTrigger id="mobileRank" className="opacity-100">
                       <SelectValue placeholder="Mobile 순위 선택" />
                     </SelectTrigger>
                     <SelectContent>
@@ -451,36 +483,48 @@ export default function KeywordPage() {
                     </SelectContent>
                   </Select>
                 </div>
-              </>
+              </div>
             )}
 
             {/* 최적 견적 조건부 필드 */}
             {formData.estimateMethod === '최적 견적' && (
               <>
-                <div className="grid gap-2">
-                  <Label htmlFor="pcBudget">PC 예산(원)</Label>
-                  <Input
-                    id="pcBudget"
-                    type="number"
-                    value={formData.pcBudget}
-                    onChange={(e) =>
-                      setFormData({ ...formData, pcBudget: e.target.value })
-                    }
-                    placeholder="PC 예산을 입력하세요"
-                  />
-                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="grid gap-2">
+                    <Label htmlFor="pcBudget">PC 예산(원)</Label>
+                    <Input
+                      id="pcBudget"
+                      type="number"
+                      value={formData.pcBudget}
+                      onChange={(e) =>
+                        setFormData({ ...formData, pcBudget: e.target.value })
+                      }
+                      placeholder="PC 예산을 입력하세요"
+                    />
+                    {formData.pcBudget && (
+                      <p className="text-sm text-gray-600">
+                        {formatBudget(formData.pcBudget)}
+                      </p>
+                    )}
+                  </div>
 
-                <div className="grid gap-2">
-                  <Label htmlFor="mobileBudget">Mobile 예산(원)</Label>
-                  <Input
-                    id="mobileBudget"
-                    type="number"
-                    value={formData.mobileBudget}
-                    onChange={(e) =>
-                      setFormData({ ...formData, mobileBudget: e.target.value })
-                    }
-                    placeholder="Mobile 예산을 입력하세요"
-                  />
+                  <div className="grid gap-2">
+                    <Label htmlFor="mobileBudget">Mobile 예산(원)</Label>
+                    <Input
+                      id="mobileBudget"
+                      type="number"
+                      value={formData.mobileBudget}
+                      onChange={(e) =>
+                        setFormData({ ...formData, mobileBudget: e.target.value })
+                      }
+                      placeholder="Mobile 예산을 입력하세요"
+                    />
+                    {formData.mobileBudget && (
+                      <p className="text-sm text-gray-600">
+                        {formatBudget(formData.mobileBudget)}
+                      </p>
+                    )}
+                  </div>
                 </div>
 
                 <div className="grid gap-2">
@@ -490,6 +534,7 @@ export default function KeywordPage() {
                     onValueChange={(value) =>
                       setFormData({ ...formData, optimizationCriteria: value })
                     }
+                    className="flex flex-row gap-4"
                   >
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="클릭 최대화" id="click" />
