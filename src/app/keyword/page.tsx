@@ -692,60 +692,92 @@ export default function KeywordPage() {
           <div className="grid gap-5 py-4">
             {selectedItem && (
               <>
+                {/* 작업 이름 */}
                 <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
                   <Label className="text-sm">작업 이름</Label>
-                  <p className="text-sm text-gray-700">{selectedItem.title}</p>
+                  <Input
+                    value={selectedItem.title}
+                    disabled
+                    className="bg-gray-50 cursor-not-allowed"
+                  />
                 </div>
 
+                {/* 견적 방식 */}
                 <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
                   <Label className="text-sm">견적 방식</Label>
-                  <p className="text-sm text-gray-700">
-                    {selectedItem.estimateMethod}
-                  </p>
+                  <Input
+                    value={selectedItem.estimateMethod}
+                    disabled
+                    className="bg-gray-50 cursor-not-allowed"
+                  />
                 </div>
 
+                {/* 일반 견적 */}
                 {selectedItem.estimateMethod === '일반 견적' &&
                   selectedItem.estimateDetails && (
                     <>
                       <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
                         <Label className="text-sm">PC 순위</Label>
-                        <p className="text-sm text-gray-700">
-                          {selectedItem.estimateDetails.pcRank}순위
-                        </p>
+                        <Input
+                          value={`${selectedItem.estimateDetails.pcRank}순위`}
+                          disabled
+                          className="bg-gray-50 cursor-not-allowed"
+                        />
                       </div>
                       <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
                         <Label className="text-sm">Mobile 순위</Label>
-                        <p className="text-sm text-gray-700">
-                          {selectedItem.estimateDetails.mobileRank}순위
-                        </p>
+                        <Input
+                          value={`${selectedItem.estimateDetails.mobileRank}순위`}
+                          disabled
+                          className="bg-gray-50 cursor-not-allowed"
+                        />
                       </div>
                     </>
                   )}
 
+                {/* 최적 견적 */}
                 {selectedItem.estimateMethod === '최적 견적' &&
                   selectedItem.estimateDetails && (
                     <>
                       <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
                         <Label className="text-sm">PC 예산(원)</Label>
-                        <p className="text-sm text-gray-700">
-                          {selectedItem.estimateDetails.pcBudget &&
-                            formatBudget(selectedItem.estimateDetails.pcBudget)}
-                        </p>
+                        <div className="flex-1">
+                          <Input
+                            value={selectedItem.estimateDetails.pcBudget || ''}
+                            disabled
+                            className="bg-gray-50 cursor-not-allowed"
+                          />
+                          {selectedItem.estimateDetails.pcBudget && (
+                            <p className="text-sm text-gray-600 mt-1">
+                              {formatBudget(selectedItem.estimateDetails.pcBudget)}
+                            </p>
+                          )}
+                        </div>
                       </div>
                       <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
                         <Label className="text-sm">Mobile 예산(원)</Label>
-                        <p className="text-sm text-gray-700">
-                          {selectedItem.estimateDetails.mobileBudget &&
-                            formatBudget(
-                              selectedItem.estimateDetails.mobileBudget
-                            )}
-                        </p>
+                        <div className="flex-1">
+                          <Input
+                            value={selectedItem.estimateDetails.mobileBudget || ''}
+                            disabled
+                            className="bg-gray-50 cursor-not-allowed"
+                          />
+                          {selectedItem.estimateDetails.mobileBudget && (
+                            <p className="text-sm text-gray-600 mt-1">
+                              {formatBudget(
+                                selectedItem.estimateDetails.mobileBudget
+                              )}
+                            </p>
+                          )}
+                        </div>
                       </div>
                       <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
                         <Label className="text-sm">최적화 기준</Label>
-                        <p className="text-sm text-gray-700">
-                          {selectedItem.estimateDetails.optimizationCriteria}
-                        </p>
+                        <Input
+                          value={selectedItem.estimateDetails.optimizationCriteria || ''}
+                          disabled
+                          className="bg-gray-50 cursor-not-allowed"
+                        />
                       </div>
                     </>
                   )}
