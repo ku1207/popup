@@ -36,6 +36,14 @@ interface KeywordData {
   author: string
   statusType: string
   statusCount: string
+  // 견적 상세 정보
+  estimateDetails?: {
+    pcRank?: string
+    mobileRank?: string
+    pcBudget?: string
+    mobileBudget?: string
+    optimizationCriteria?: string
+  }
 }
 
 const keywordData: KeywordData[] = [
@@ -47,6 +55,10 @@ const keywordData: KeywordData[] = [
     author: 'admin@dmpkorea.co.kr',
     statusType: '완료',
     statusCount: '3건 성공',
+    estimateDetails: {
+      pcRank: '3',
+      mobileRank: '2',
+    },
   },
   {
     no: 2,
@@ -56,6 +68,11 @@ const keywordData: KeywordData[] = [
     author: 'admin@dmpkorea.co.kr',
     statusType: '완료',
     statusCount: '10건 성공',
+    estimateDetails: {
+      pcBudget: '5000000',
+      mobileBudget: '3000000',
+      optimizationCriteria: '클릭 최대화',
+    },
   },
   {
     no: 3,
@@ -65,6 +82,10 @@ const keywordData: KeywordData[] = [
     author: 'adweb@adweb.co.kr',
     statusType: '완료',
     statusCount: '315건 성공',
+    estimateDetails: {
+      pcRank: '5',
+      mobileRank: '3',
+    },
   },
   {
     no: 4,
@@ -74,6 +95,11 @@ const keywordData: KeywordData[] = [
     author: 'adweb@adweb.co.kr',
     statusType: '완료',
     statusCount: '34건 성공',
+    estimateDetails: {
+      pcBudget: '10000000',
+      mobileBudget: '8000000',
+      optimizationCriteria: '노출 최대화',
+    },
   },
   {
     no: 5,
@@ -83,6 +109,10 @@ const keywordData: KeywordData[] = [
     author: 'admin@dmpkorea.co.kr',
     statusType: '완료',
     statusCount: '315건 성공',
+    estimateDetails: {
+      pcRank: '2',
+      mobileRank: '1',
+    },
   },
   {
     no: 6,
@@ -92,6 +122,10 @@ const keywordData: KeywordData[] = [
     author: 'admin@dmpkorea.co.kr',
     statusType: '완료',
     statusCount: '8건 성공',
+    estimateDetails: {
+      pcRank: '7',
+      mobileRank: '4',
+    },
   },
   {
     no: 7,
@@ -101,6 +135,11 @@ const keywordData: KeywordData[] = [
     author: 'ad.sopd@adweb.co.kr',
     statusType: '완료',
     statusCount: '9건 성공',
+    estimateDetails: {
+      pcBudget: '2000000',
+      mobileBudget: '1500000',
+      optimizationCriteria: '클릭 최대화',
+    },
   },
   {
     no: 8,
@@ -110,6 +149,10 @@ const keywordData: KeywordData[] = [
     author: 'ad.sopd@adweb.co.kr',
     statusType: '완료',
     statusCount: '6건 성공',
+    estimateDetails: {
+      pcRank: '4',
+      mobileRank: '2',
+    },
   },
   {
     no: 9,
@@ -119,6 +162,11 @@ const keywordData: KeywordData[] = [
     author: 'ad.sopd@adweb.co.kr',
     statusType: '완료',
     statusCount: '172건 성공',
+    estimateDetails: {
+      pcBudget: '15000000',
+      mobileBudget: '12000000',
+      optimizationCriteria: '클릭 최대화',
+    },
   },
   {
     no: 10,
@@ -128,6 +176,10 @@ const keywordData: KeywordData[] = [
     author: 'ad.sopd@adweb.co.kr',
     statusType: '완료',
     statusCount: '30건 성공',
+    estimateDetails: {
+      pcRank: '6',
+      mobileRank: '3',
+    },
   },
   {
     no: 11,
@@ -137,6 +189,11 @@ const keywordData: KeywordData[] = [
     author: 'adweb@adweb.co.kr',
     statusType: '완료',
     statusCount: '8건 성공',
+    estimateDetails: {
+      pcBudget: '7000000',
+      mobileBudget: '5000000',
+      optimizationCriteria: '노출 최대화',
+    },
   },
   {
     no: 12,
@@ -146,6 +203,10 @@ const keywordData: KeywordData[] = [
     author: 'adweb@adweb.co.kr',
     statusType: '완료',
     statusCount: '190건 성공',
+    estimateDetails: {
+      pcRank: '1',
+      mobileRank: '1',
+    },
   },
   {
     no: 13,
@@ -155,6 +216,10 @@ const keywordData: KeywordData[] = [
     author: 'adweb@adweb.co.kr',
     statusType: '완료',
     statusCount: '1172건 성공',
+    estimateDetails: {
+      pcRank: '8',
+      mobileRank: '5',
+    },
   },
   {
     no: 14,
@@ -164,6 +229,11 @@ const keywordData: KeywordData[] = [
     author: 'admin@dmpkorea.co.kr',
     statusType: '완료',
     statusCount: '1건 성공',
+    estimateDetails: {
+      pcBudget: '3000000',
+      mobileBudget: '2000000',
+      optimizationCriteria: '클릭 최대화',
+    },
   },
   {
     no: 15,
@@ -173,6 +243,10 @@ const keywordData: KeywordData[] = [
     author: 'adweb@adweb.co.kr',
     statusType: '완료',
     statusCount: '1384건 성공',
+    estimateDetails: {
+      pcRank: '3',
+      mobileRank: '2',
+    },
   },
   {
     no: 16,
@@ -182,11 +256,18 @@ const keywordData: KeywordData[] = [
     author: 'adweb@adweb.co.kr',
     statusType: '완료',
     statusCount: '1172건 성공',
+    estimateDetails: {
+      pcBudget: '20000000',
+      mobileBudget: '15000000',
+      optimizationCriteria: '노출 최대화',
+    },
   },
 ]
 
 export default function KeywordPage() {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [isDetailDialogOpen, setIsDetailDialogOpen] = useState(false)
+  const [selectedItem, setSelectedItem] = useState<KeywordData | null>(null)
   const [formData, setFormData] = useState({
     taskName: '',
     file: null as File | null,
@@ -199,6 +280,42 @@ export default function KeywordPage() {
     mobileBudget: '',
     optimizationCriteria: '클릭 최대화',
   })
+
+  const handleEstimateMethodClick = (item: KeywordData) => {
+    setSelectedItem(item)
+    setIsDetailDialogOpen(true)
+  }
+
+  // 예산 포맷팅 함수
+  const formatBudget = (value: string): string => {
+    if (!value || value === '0') return ''
+    const num = parseInt(value)
+    if (isNaN(num)) return ''
+
+    if (num < 1000) {
+      return `${num.toLocaleString()}원`
+    } else if (num < 10000) {
+      return `${num.toLocaleString()}원`
+    } else if (num < 100000000) {
+      const man = Math.floor(num / 10000)
+      const remainder = num % 10000
+      if (remainder === 0) {
+        return `${man}만원`
+      }
+      return `${man}만원 ${remainder.toLocaleString()}원`
+    } else {
+      const eok = Math.floor(num / 100000000)
+      const remainder = num % 100000000
+      if (remainder === 0) {
+        return `${eok}억원`
+      }
+      const man = Math.floor(remainder / 10000)
+      if (man === 0) {
+        return `${eok}억원`
+      }
+      return `${eok}억원 ${man}만원`
+    }
+  }
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -240,10 +357,10 @@ export default function KeywordPage() {
 
   return (
     <div className="min-h-[calc(100vh-65px)] bg-white">
-      <div className="max-w-[70%] mx-auto px-6 py-8">
+      <div className="max-w-[90%] mx-auto px-6 py-8">
         {/* 페이지 제목 */}
         <h1 className="text-2xl font-normal text-gray-900 mb-6">
-          키워드 대량 검점
+          키워드 대량 견적
         </h1>
 
         {/* 안내 박스 */}
@@ -287,7 +404,7 @@ export default function KeywordPage() {
                 <TableHead className="text-center font-medium text-gray-700 w-16 border-r">
                   No
                 </TableHead>
-                <TableHead className="text-center font-medium text-gray-700 border-r">
+                <TableHead className="text-center font-medium text-gray-700 w-64 border-r">
                   작업 이름
                 </TableHead>
                 <TableHead className="text-center font-medium text-gray-700 w-32 border-r">
@@ -318,7 +435,12 @@ export default function KeywordPage() {
                   </TableCell>
                   <TableCell className="text-sm border-r">{item.title}</TableCell>
                   <TableCell className="text-center text-sm border-r">
-                    {item.estimateMethod}
+                    <button
+                      onClick={() => handleEstimateMethodClick(item)}
+                      className="text-blue-600 hover:text-blue-800 underline cursor-pointer"
+                    >
+                      {item.estimateMethod}
+                    </button>
                   </TableCell>
                   <TableCell className="text-center text-sm text-gray-600 border-r">
                     {item.registeredAt}
@@ -329,7 +451,9 @@ export default function KeywordPage() {
                   <TableCell className="text-center text-sm border-r">
                     <div className="flex items-center justify-center gap-2">
                       <span>{item.statusType}</span>
-                      <span className="text-gray-600">{item.statusCount}</span>
+                      <span className="border-l border-gray-300 pl-2 text-gray-600">
+                        {item.statusCount}
+                      </span>
                     </div>
                   </TableCell>
                   <TableCell className="text-center border-r">
@@ -391,6 +515,7 @@ export default function KeywordPage() {
                 onValueChange={(value) =>
                   setFormData({ ...formData, estimateMethod: value })
                 }
+                className="flex flex-row gap-4"
               >
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="일반 견적" id="normal" />
@@ -409,7 +534,7 @@ export default function KeywordPage() {
 
             {/* 일반 견적 조건부 필드 */}
             {formData.estimateMethod === '일반 견적' && (
-              <>
+              <div className="grid grid-cols-2 gap-4">
                 <div className="grid gap-2">
                   <Label htmlFor="pcRank">PC 순위</Label>
                   <Select
@@ -418,7 +543,7 @@ export default function KeywordPage() {
                       setFormData({ ...formData, pcRank: value })
                     }
                   >
-                    <SelectTrigger id="pcRank">
+                    <SelectTrigger id="pcRank" className="opacity-100">
                       <SelectValue placeholder="PC 순위 선택" />
                     </SelectTrigger>
                     <SelectContent>
@@ -439,7 +564,7 @@ export default function KeywordPage() {
                       setFormData({ ...formData, mobileRank: value })
                     }
                   >
-                    <SelectTrigger id="mobileRank">
+                    <SelectTrigger id="mobileRank" className="opacity-100">
                       <SelectValue placeholder="Mobile 순위 선택" />
                     </SelectTrigger>
                     <SelectContent>
@@ -451,36 +576,48 @@ export default function KeywordPage() {
                     </SelectContent>
                   </Select>
                 </div>
-              </>
+              </div>
             )}
 
             {/* 최적 견적 조건부 필드 */}
             {formData.estimateMethod === '최적 견적' && (
               <>
-                <div className="grid gap-2">
-                  <Label htmlFor="pcBudget">PC 예산(원)</Label>
-                  <Input
-                    id="pcBudget"
-                    type="number"
-                    value={formData.pcBudget}
-                    onChange={(e) =>
-                      setFormData({ ...formData, pcBudget: e.target.value })
-                    }
-                    placeholder="PC 예산을 입력하세요"
-                  />
-                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="grid gap-2">
+                    <Label htmlFor="pcBudget">PC 예산(원)</Label>
+                    <Input
+                      id="pcBudget"
+                      type="number"
+                      value={formData.pcBudget}
+                      onChange={(e) =>
+                        setFormData({ ...formData, pcBudget: e.target.value })
+                      }
+                      placeholder="PC 예산을 입력하세요"
+                    />
+                    {formData.pcBudget && (
+                      <p className="text-sm text-gray-600">
+                        {formatBudget(formData.pcBudget)}
+                      </p>
+                    )}
+                  </div>
 
-                <div className="grid gap-2">
-                  <Label htmlFor="mobileBudget">Mobile 예산(원)</Label>
-                  <Input
-                    id="mobileBudget"
-                    type="number"
-                    value={formData.mobileBudget}
-                    onChange={(e) =>
-                      setFormData({ ...formData, mobileBudget: e.target.value })
-                    }
-                    placeholder="Mobile 예산을 입력하세요"
-                  />
+                  <div className="grid gap-2">
+                    <Label htmlFor="mobileBudget">Mobile 예산(원)</Label>
+                    <Input
+                      id="mobileBudget"
+                      type="number"
+                      value={formData.mobileBudget}
+                      onChange={(e) =>
+                        setFormData({ ...formData, mobileBudget: e.target.value })
+                      }
+                      placeholder="Mobile 예산을 입력하세요"
+                    />
+                    {formData.mobileBudget && (
+                      <p className="text-sm text-gray-600">
+                        {formatBudget(formData.mobileBudget)}
+                      </p>
+                    )}
+                  </div>
                 </div>
 
                 <div className="grid gap-2">
@@ -490,6 +627,7 @@ export default function KeywordPage() {
                     onValueChange={(value) =>
                       setFormData({ ...formData, optimizationCriteria: value })
                     }
+                    className="flex flex-row gap-4"
                   >
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="클릭 최대화" id="click" />
@@ -519,6 +657,83 @@ export default function KeywordPage() {
               취소
             </Button>
             <Button onClick={handleSubmit}>저장</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* 견적 상세 정보 팝업 */}
+      <Dialog open={isDetailDialogOpen} onOpenChange={setIsDetailDialogOpen}>
+        <DialogContent className="sm:max-w-[500px]">
+          <DialogHeader>
+            <DialogTitle>견적 상세 정보</DialogTitle>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            {selectedItem && (
+              <>
+                <div className="grid gap-2">
+                  <Label className="font-medium">작업 이름</Label>
+                  <p className="text-sm text-gray-700">{selectedItem.title}</p>
+                </div>
+
+                <div className="grid gap-2">
+                  <Label className="font-medium">견적 방식</Label>
+                  <p className="text-sm text-gray-700">
+                    {selectedItem.estimateMethod}
+                  </p>
+                </div>
+
+                {selectedItem.estimateMethod === '일반 견적' &&
+                  selectedItem.estimateDetails && (
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="grid gap-2">
+                        <Label className="font-medium">PC 순위</Label>
+                        <p className="text-sm text-gray-700">
+                          {selectedItem.estimateDetails.pcRank}순위
+                        </p>
+                      </div>
+                      <div className="grid gap-2">
+                        <Label className="font-medium">Mobile 순위</Label>
+                        <p className="text-sm text-gray-700">
+                          {selectedItem.estimateDetails.mobileRank}순위
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
+                {selectedItem.estimateMethod === '최적 견적' &&
+                  selectedItem.estimateDetails && (
+                    <>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="grid gap-2">
+                          <Label className="font-medium">PC 예산(원)</Label>
+                          <p className="text-sm text-gray-700">
+                            {selectedItem.estimateDetails.pcBudget &&
+                              formatBudget(selectedItem.estimateDetails.pcBudget)}
+                          </p>
+                        </div>
+                        <div className="grid gap-2">
+                          <Label className="font-medium">Mobile 예산(원)</Label>
+                          <p className="text-sm text-gray-700">
+                            {selectedItem.estimateDetails.mobileBudget &&
+                              formatBudget(
+                                selectedItem.estimateDetails.mobileBudget
+                              )}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="grid gap-2">
+                        <Label className="font-medium">최적화 기준</Label>
+                        <p className="text-sm text-gray-700">
+                          {selectedItem.estimateDetails.optimizationCriteria}
+                        </p>
+                      </div>
+                    </>
+                  )}
+              </>
+            )}
+          </div>
+          <DialogFooter>
+            <Button onClick={() => setIsDetailDialogOpen(false)}>닫기</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
