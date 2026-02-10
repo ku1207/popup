@@ -13,26 +13,32 @@ export function Sidebar() {
 
         {/* 네비게이션 메뉴 */}
         <nav className="space-y-2">
-          <Link 
-            href="/" 
+          <Link
+            href="/"
             className="flex items-center py-2 text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-lg transition-colors"
           >
             Home
           </Link>
-          <Link 
-            href="/page1" 
+          <Link
+            href="/keyword-search"
+            className="flex items-center py-2 text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-lg transition-colors"
+          >
+            키워드 대량 검색
+          </Link>
+          <Link
+            href="/page1"
             className="flex items-center py-2 text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-lg transition-colors"
           >
             Page1
           </Link>
-          <Link 
-            href="/page2" 
+          <Link
+            href="/page2"
             className="flex items-center py-2 text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-lg transition-colors"
           >
             Page2
           </Link>
-          <Link 
-            href="/page3" 
+          <Link
+            href="/page3"
             className="flex items-center py-2 text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-lg transition-colors"
           >
             Page3
