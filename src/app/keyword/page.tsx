@@ -20,6 +20,13 @@ import {
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 
 interface KeywordData {
   no: number
@@ -36,7 +43,7 @@ const keywordData: KeywordData[] = [
     no: 1,
     title: '제미나이 신규키워드',
     registeredAt: '2026-02-09 11:23',
-    estimateMethod: '완료',
+    estimateMethod: '일반 견적',
     author: 'admin@dmpkorea.co.kr',
     statusType: '완료',
     statusCount: '3건 성공',
@@ -45,7 +52,7 @@ const keywordData: KeywordData[] = [
     no: 2,
     title: '키피티 제미나이 신규키워드',
     registeredAt: '2026-02-09 11:05',
-    estimateMethod: '완료',
+    estimateMethod: '최적 견적',
     author: 'admin@dmpkorea.co.kr',
     statusType: '완료',
     statusCount: '10건 성공',
@@ -54,7 +61,7 @@ const keywordData: KeywordData[] = [
     no: 3,
     title: '명실상주톱_네',
     registeredAt: '2026-02-06 17:10',
-    estimateMethod: '완료',
+    estimateMethod: '일반 견적',
     author: 'adweb@adweb.co.kr',
     statusType: '완료',
     statusCount: '315건 성공',
@@ -63,7 +70,7 @@ const keywordData: KeywordData[] = [
     no: 4,
     title: '우리금융_특강경설',
     registeredAt: '2026-02-02 18:57',
-    estimateMethod: '완료',
+    estimateMethod: '최적 견적',
     author: 'adweb@adweb.co.kr',
     statusType: '완료',
     statusCount: '34건 성공',
@@ -72,7 +79,7 @@ const keywordData: KeywordData[] = [
     no: 5,
     title: '한국부동산원',
     registeredAt: '2026-02-02 08:23',
-    estimateMethod: '완료',
+    estimateMethod: '일반 견적',
     author: 'admin@dmpkorea.co.kr',
     statusType: '완료',
     statusCount: '315건 성공',
@@ -81,7 +88,7 @@ const keywordData: KeywordData[] = [
     no: 6,
     title: '테스트',
     registeredAt: '2026-01-30 14:44',
-    estimateMethod: '완료',
+    estimateMethod: '일반 견적',
     author: 'admin@dmpkorea.co.kr',
     statusType: '완료',
     statusCount: '8건 성공',
@@ -90,7 +97,7 @@ const keywordData: KeywordData[] = [
     no: 7,
     title: 'ㅇㅇㅇ',
     registeredAt: '2026-01-29 17:41',
-    estimateMethod: '완료',
+    estimateMethod: '최적 견적',
     author: 'ad.sopd@adweb.co.kr',
     statusType: '완료',
     statusCount: '9건 성공',
@@ -99,7 +106,7 @@ const keywordData: KeywordData[] = [
     no: 8,
     title: 'ㅇㅇ',
     registeredAt: '2026-01-29 17:32',
-    estimateMethod: '완료',
+    estimateMethod: '일반 견적',
     author: 'ad.sopd@adweb.co.kr',
     statusType: '완료',
     statusCount: '6건 성공',
@@ -108,7 +115,7 @@ const keywordData: KeywordData[] = [
     no: 9,
     title: '클라텍 바이오',
     registeredAt: '2026-01-29 17:20',
-    estimateMethod: '완료',
+    estimateMethod: '최적 견적',
     author: 'ad.sopd@adweb.co.kr',
     statusType: '완료',
     statusCount: '172건 성공',
@@ -117,7 +124,7 @@ const keywordData: KeywordData[] = [
     no: 10,
     title: '나라사랑카드_대학생적',
     registeredAt: '2026-01-29 17:04',
-    estimateMethod: '완료',
+    estimateMethod: '일반 견적',
     author: 'ad.sopd@adweb.co.kr',
     statusType: '완료',
     statusCount: '30건 성공',
@@ -126,7 +133,7 @@ const keywordData: KeywordData[] = [
     no: 11,
     title: '하나카드 브랜드_나라사랑카드_260129',
     registeredAt: '2026-01-29 16:57',
-    estimateMethod: '완료',
+    estimateMethod: '최적 견적',
     author: 'adweb@adweb.co.kr',
     statusType: '완료',
     statusCount: '8건 성공',
@@ -135,7 +142,7 @@ const keywordData: KeywordData[] = [
     no: 12,
     title: '명실상주톱_미소진통',
     registeredAt: '2026-01-29 16:38',
-    estimateMethod: '완료',
+    estimateMethod: '일반 견적',
     author: 'adweb@adweb.co.kr',
     statusType: '완료',
     statusCount: '190건 성공',
@@ -144,7 +151,7 @@ const keywordData: KeywordData[] = [
     no: 13,
     title: '명실상주톱_미소진통케어',
     registeredAt: '2026-01-29 16:37',
-    estimateMethod: '완료',
+    estimateMethod: '일반 견적',
     author: 'adweb@adweb.co.kr',
     statusType: '완료',
     statusCount: '1172건 성공',
@@ -153,7 +160,7 @@ const keywordData: KeywordData[] = [
     no: 14,
     title: '테스트',
     registeredAt: '2026-01-29 16:35',
-    estimateMethod: '완료',
+    estimateMethod: '최적 견적',
     author: 'admin@dmpkorea.co.kr',
     statusType: '완료',
     statusCount: '1건 성공',
@@ -162,7 +169,7 @@ const keywordData: KeywordData[] = [
     no: 15,
     title: '명실상주톱_최종',
     registeredAt: '2026-01-28 16:56',
-    estimateMethod: '완료',
+    estimateMethod: '일반 견적',
     author: 'adweb@adweb.co.kr',
     statusType: '완료',
     statusCount: '1384건 성공',
@@ -171,7 +178,7 @@ const keywordData: KeywordData[] = [
     no: 16,
     title: '명실상주톱',
     registeredAt: '2026-01-28 16:04',
-    estimateMethod: '완료',
+    estimateMethod: '최적 견적',
     author: 'adweb@adweb.co.kr',
     statusType: '완료',
     statusCount: '1172건 성공',
@@ -184,6 +191,13 @@ export default function KeywordPage() {
     taskName: '',
     file: null as File | null,
     estimateMethod: '일반 견적',
+    // 일반 견적 필드
+    pcRank: '',
+    mobileRank: '',
+    // 최적 견적 필드
+    pcBudget: '',
+    mobileBudget: '',
+    optimizationCriteria: '클릭 최대화',
   })
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -201,6 +215,11 @@ export default function KeywordPage() {
       taskName: '',
       file: null,
       estimateMethod: '일반 견적',
+      pcRank: '',
+      mobileRank: '',
+      pcBudget: '',
+      mobileBudget: '',
+      optimizationCriteria: '클릭 최대화',
     })
   }
 
@@ -211,6 +230,11 @@ export default function KeywordPage() {
       taskName: '',
       file: null,
       estimateMethod: '일반 견적',
+      pcRank: '',
+      mobileRank: '',
+      pcBudget: '',
+      mobileBudget: '',
+      optimizationCriteria: '클릭 최대화',
     })
   }
 
@@ -260,25 +284,25 @@ export default function KeywordPage() {
           <Table>
             <TableHeader>
               <TableRow className="bg-gray-50">
-                <TableHead className="text-center font-medium text-gray-700 w-16">
+                <TableHead className="text-center font-medium text-gray-700 w-16 border-r">
                   No
                 </TableHead>
-                <TableHead className="text-center font-medium text-gray-700">
+                <TableHead className="text-center font-medium text-gray-700 border-r">
                   작업 이름
                 </TableHead>
-                <TableHead className="text-center font-medium text-gray-700 w-32">
+                <TableHead className="text-center font-medium text-gray-700 w-32 border-r">
                   견적 방식
                 </TableHead>
-                <TableHead className="text-center font-medium text-gray-700 w-44">
+                <TableHead className="text-center font-medium text-gray-700 w-44 border-r">
                   등록시간
                 </TableHead>
-                <TableHead className="text-center font-medium text-gray-700 w-48">
+                <TableHead className="text-center font-medium text-gray-700 w-48 border-r">
                   작업자
                 </TableHead>
-                <TableHead className="text-center font-medium text-gray-700 w-32">
+                <TableHead className="text-center font-medium text-gray-700 w-32 border-r">
                   상태
                 </TableHead>
-                <TableHead className="text-center font-medium text-gray-700 w-20">
+                <TableHead className="text-center font-medium text-gray-700 w-20 border-r">
                   등록
                 </TableHead>
                 <TableHead className="text-center font-medium text-gray-700 w-20">
@@ -289,26 +313,26 @@ export default function KeywordPage() {
             <TableBody>
               {keywordData.map((item) => (
                 <TableRow key={item.no}>
-                  <TableCell className="text-center text-sm">
+                  <TableCell className="text-center text-sm border-r">
                     {item.no}
                   </TableCell>
-                  <TableCell className="text-sm">{item.title}</TableCell>
-                  <TableCell className="text-center text-sm">
+                  <TableCell className="text-sm border-r">{item.title}</TableCell>
+                  <TableCell className="text-center text-sm border-r">
                     {item.estimateMethod}
                   </TableCell>
-                  <TableCell className="text-center text-sm text-gray-600">
+                  <TableCell className="text-center text-sm text-gray-600 border-r">
                     {item.registeredAt}
                   </TableCell>
-                  <TableCell className="text-center text-sm text-gray-600">
+                  <TableCell className="text-center text-sm text-gray-600 border-r">
                     {item.author}
                   </TableCell>
-                  <TableCell className="text-center text-sm">
-                    <div className="flex flex-col items-center">
+                  <TableCell className="text-center text-sm border-r">
+                    <div className="flex items-center justify-center gap-2">
                       <span>{item.statusType}</span>
                       <span className="text-gray-600">{item.statusCount}</span>
                     </div>
                   </TableCell>
-                  <TableCell className="text-center">
+                  <TableCell className="text-center border-r">
                     <button className="text-gray-600 hover:text-gray-900 text-base">
                       ⬇
                     </button>
@@ -382,6 +406,113 @@ export default function KeywordPage() {
                 </div>
               </RadioGroup>
             </div>
+
+            {/* 일반 견적 조건부 필드 */}
+            {formData.estimateMethod === '일반 견적' && (
+              <>
+                <div className="grid gap-2">
+                  <Label htmlFor="pcRank">PC 순위</Label>
+                  <Select
+                    value={formData.pcRank}
+                    onValueChange={(value) =>
+                      setFormData({ ...formData, pcRank: value })
+                    }
+                  >
+                    <SelectTrigger id="pcRank">
+                      <SelectValue placeholder="PC 순위 선택" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((rank) => (
+                        <SelectItem key={rank} value={rank.toString()}>
+                          {rank}순위
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="grid gap-2">
+                  <Label htmlFor="mobileRank">Mobile 순위</Label>
+                  <Select
+                    value={formData.mobileRank}
+                    onValueChange={(value) =>
+                      setFormData({ ...formData, mobileRank: value })
+                    }
+                  >
+                    <SelectTrigger id="mobileRank">
+                      <SelectValue placeholder="Mobile 순위 선택" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {[1, 2, 3, 4, 5].map((rank) => (
+                        <SelectItem key={rank} value={rank.toString()}>
+                          {rank}순위
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              </>
+            )}
+
+            {/* 최적 견적 조건부 필드 */}
+            {formData.estimateMethod === '최적 견적' && (
+              <>
+                <div className="grid gap-2">
+                  <Label htmlFor="pcBudget">PC 예산(원)</Label>
+                  <Input
+                    id="pcBudget"
+                    type="number"
+                    value={formData.pcBudget}
+                    onChange={(e) =>
+                      setFormData({ ...formData, pcBudget: e.target.value })
+                    }
+                    placeholder="PC 예산을 입력하세요"
+                  />
+                </div>
+
+                <div className="grid gap-2">
+                  <Label htmlFor="mobileBudget">Mobile 예산(원)</Label>
+                  <Input
+                    id="mobileBudget"
+                    type="number"
+                    value={formData.mobileBudget}
+                    onChange={(e) =>
+                      setFormData({ ...formData, mobileBudget: e.target.value })
+                    }
+                    placeholder="Mobile 예산을 입력하세요"
+                  />
+                </div>
+
+                <div className="grid gap-2">
+                  <Label>최적화 기준</Label>
+                  <RadioGroup
+                    value={formData.optimizationCriteria}
+                    onValueChange={(value) =>
+                      setFormData({ ...formData, optimizationCriteria: value })
+                    }
+                  >
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="클릭 최대화" id="click" />
+                      <Label
+                        htmlFor="click"
+                        className="font-normal cursor-pointer"
+                      >
+                        클릭 최대화
+                      </Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="노출 최대화" id="impression" />
+                      <Label
+                        htmlFor="impression"
+                        className="font-normal cursor-pointer"
+                      >
+                        노출 최대화
+                      </Label>
+                    </div>
+                  </RadioGroup>
+                </div>
+              </>
+            )}
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={handleCancel}>
