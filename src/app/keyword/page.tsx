@@ -475,41 +475,48 @@ export default function KeywordPage() {
 
       {/* 견적 등록 팝업 */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="sm:max-w-[500px]">
+        <DialogContent className="sm:max-w-[600px]">
           <DialogHeader>
-            <DialogTitle>키워드 대량 견적 등록</DialogTitle>
+            <DialogTitle className="text-lg">키워드 대량 견적 등록</DialogTitle>
           </DialogHeader>
-          <div className="grid gap-4 py-4">
-            {/* 작업 이름 */}
-            <div className="grid gap-2">
-              <Label htmlFor="taskName">작업 이름</Label>
+          <div className="grid gap-5 py-4">
+            {/* 작업아웃 */}
+            <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
+              <Label htmlFor="taskName" className="text-sm">
+                작업아웃
+              </Label>
               <Input
                 id="taskName"
                 value={formData.taskName}
                 onChange={(e) =>
                   setFormData({ ...formData, taskName: e.target.value })
                 }
-                placeholder="작업 이름을 입력하세요"
+                placeholder="작업아웃을 입력해 주세요"
+                className="flex-1"
               />
             </div>
 
-            {/* 파일 업로드 */}
-            <div className="grid gap-2">
-              <Label htmlFor="fileUpload">파일 업로드</Label>
-              <Input
-                id="fileUpload"
-                type="file"
-                onChange={handleFileChange}
-                className="cursor-pointer"
-              />
-              {formData.file && (
-                <p className="text-sm text-gray-600">{formData.file.name}</p>
-              )}
+            {/* 파일업로드 */}
+            <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
+              <Label htmlFor="fileUpload" className="text-sm">
+                파일업로드
+              </Label>
+              <div className="flex-1">
+                <Input
+                  id="fileUpload"
+                  type="file"
+                  onChange={handleFileChange}
+                  className="cursor-pointer"
+                />
+                {formData.file && (
+                  <p className="text-sm text-gray-600 mt-1">{formData.file.name}</p>
+                )}
+              </div>
             </div>
 
             {/* 견적 방식 */}
-            <div className="grid gap-2">
-              <Label>견적 방식</Label>
+            <div className="grid grid-cols-[120px_1fr] gap-4 items-start">
+              <Label className="text-sm pt-2">견적 방식</Label>
               <RadioGroup
                 value={formData.estimateMethod}
                 onValueChange={(value) =>
@@ -534,9 +541,11 @@ export default function KeywordPage() {
 
             {/* 일반 견적 조건부 필드 */}
             {formData.estimateMethod === '일반 견적' && (
-              <div className="grid grid-cols-2 gap-4">
-                <div className="grid gap-2">
-                  <Label htmlFor="pcRank">PC 순위</Label>
+              <>
+                <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
+                  <Label htmlFor="pcRank" className="text-sm">
+                    PC 순위
+                  </Label>
                   <Select
                     value={formData.pcRank}
                     onValueChange={(value) =>
@@ -556,8 +565,10 @@ export default function KeywordPage() {
                   </Select>
                 </div>
 
-                <div className="grid gap-2">
-                  <Label htmlFor="mobileRank">Mobile 순위</Label>
+                <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
+                  <Label htmlFor="mobileRank" className="text-sm">
+                    Mobile 순위
+                  </Label>
                   <Select
                     value={formData.mobileRank}
                     onValueChange={(value) =>
@@ -576,15 +587,17 @@ export default function KeywordPage() {
                     </SelectContent>
                   </Select>
                 </div>
-              </div>
+              </>
             )}
 
             {/* 최적 견적 조건부 필드 */}
             {formData.estimateMethod === '최적 견적' && (
               <>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="grid gap-2">
-                    <Label htmlFor="pcBudget">PC 예산(원)</Label>
+                <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
+                  <Label htmlFor="pcBudget" className="text-sm">
+                    PC 예산(원)
+                  </Label>
+                  <div className="flex-1">
                     <Input
                       id="pcBudget"
                       type="number"
@@ -595,14 +608,18 @@ export default function KeywordPage() {
                       placeholder="PC 예산을 입력하세요"
                     />
                     {formData.pcBudget && (
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-gray-600 mt-1">
                         {formatBudget(formData.pcBudget)}
                       </p>
                     )}
                   </div>
+                </div>
 
-                  <div className="grid gap-2">
-                    <Label htmlFor="mobileBudget">Mobile 예산(원)</Label>
+                <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
+                  <Label htmlFor="mobileBudget" className="text-sm">
+                    Mobile 예산(원)
+                  </Label>
+                  <div className="flex-1">
                     <Input
                       id="mobileBudget"
                       type="number"
@@ -613,15 +630,15 @@ export default function KeywordPage() {
                       placeholder="Mobile 예산을 입력하세요"
                     />
                     {formData.mobileBudget && (
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-gray-600 mt-1">
                         {formatBudget(formData.mobileBudget)}
                       </p>
                     )}
                   </div>
                 </div>
 
-                <div className="grid gap-2">
-                  <Label>최적화 기준</Label>
+                <div className="grid grid-cols-[120px_1fr] gap-4 items-start">
+                  <Label className="text-sm pt-2">최적화 기준</Label>
                   <RadioGroup
                     value={formData.optimizationCriteria}
                     onValueChange={(value) =>
@@ -652,11 +669,16 @@ export default function KeywordPage() {
               </>
             )}
           </div>
-          <DialogFooter>
+          <DialogFooter className="gap-2">
+            <Button
+              onClick={handleSubmit}
+              className="bg-[#50c0b5] hover:bg-[#45a89f] text-white"
+            >
+              저장
+            </Button>
             <Button variant="outline" onClick={handleCancel}>
               취소
             </Button>
-            <Button onClick={handleSubmit}>저장</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
