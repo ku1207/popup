@@ -261,6 +261,7 @@ export default function KeywordPage() {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [isAiDialogOpen, setIsAiDialogOpen] = useState(false)
   const [isDetailDialogOpen, setIsDetailDialogOpen] = useState(false)
+  const [isTemplateDialogOpen, setIsTemplateDialogOpen] = useState(false)
   const [selectedItem, setSelectedItem] = useState<KeywordData | null>(null)
 
   // 일반 견적 등록 폼 데이터
@@ -395,7 +396,12 @@ export default function KeywordPage() {
             <span className="text-sm text-gray-700">
               견적 잔여 개수 : 9,323 / 10,000
             </span>
-            <Button variant="outline" size="sm" className="text-sm">
+            <Button
+              variant="outline"
+              size="sm"
+              className="text-sm"
+              onClick={() => setIsTemplateDialogOpen(true)}
+            >
               템플릿 다운로드
             </Button>
             <Button
@@ -676,6 +682,98 @@ export default function KeywordPage() {
             </Button>
             <Button variant="outline" onClick={handleAiCancel}>
               취소
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* 템플릿 다운로드 팝업 */}
+      <Dialog open={isTemplateDialogOpen} onOpenChange={setIsTemplateDialogOpen}>
+        <DialogContent className="max-w-[1000px]">
+          <DialogHeader>
+            <DialogTitle className="text-lg">템플릿 다운로드</DialogTitle>
+          </DialogHeader>
+          <div className="grid grid-cols-2 gap-6 py-6">
+            {/* 전체순위 견적 카드 */}
+            <div className="bg-[#f5f5f5] rounded-lg p-6 flex flex-col">
+              <h3 className="text-base font-medium mb-3">전체순위 견적</h3>
+              <p className="text-sm text-gray-700 mb-4 flex-grow">
+                키워드별 1~10 순위까지의 입찰가를 조회합니다.
+                <br />
+                순위별로 예상 입찰가를 확인할 수 있습니다.
+              </p>
+              <Button
+                variant="outline"
+                className="w-full mt-auto"
+                onClick={() => {
+                  console.log('전체순위 견적 템플릿 다운로드')
+                }}
+              >
+                전체순위 견적 템플릿
+              </Button>
+            </div>
+
+            {/* 순위 견적 카드 */}
+            <div className="bg-[#f5f5f5] rounded-lg p-6 flex flex-col">
+              <h3 className="text-base font-medium mb-3">순위 견적</h3>
+              <p className="text-sm text-gray-700 mb-4 flex-grow">
+                원하는 순위의 입찰가를 조회합니다.
+                <br />
+                PC와 Mobile 각각 원하는 순위를 지정할 수 있습니다.
+              </p>
+              <Button
+                variant="outline"
+                className="w-full mt-auto"
+                onClick={() => {
+                  console.log('순위 견적 템플릿 다운로드')
+                }}
+              >
+                순위 견적 템플릿
+              </Button>
+            </div>
+
+            {/* 입찰가 견적 카드 */}
+            <div className="bg-[#f5f5f5] rounded-lg p-6 flex flex-col">
+              <h3 className="text-base font-medium mb-3">입찰가 견적</h3>
+              <p className="text-sm text-gray-700 mb-4 flex-grow">
+                특정 입찰가로 집행 시 예상 순위를 조회합니다.
+                <br />
+                PC와 Mobile 각각 입찰가를 지정할 수 있습니다.
+              </p>
+              <Button
+                variant="outline"
+                className="w-full mt-auto"
+                onClick={() => {
+                  console.log('입찰가 견적 템플릿 다운로드')
+                }}
+              >
+                입찰가 견적 템플릿
+              </Button>
+            </div>
+
+            {/* AI 견적 카드 */}
+            <div className="bg-[#f5f5f5] rounded-lg p-6 flex flex-col">
+              <h3 className="text-base font-medium mb-3">AI 견적</h3>
+              <p className="text-sm text-gray-700 mb-4 flex-grow">
+                AI를 통한 최적화 견적을 제공합니다.
+              </p>
+              <Button
+                variant="outline"
+                className="w-full mt-auto"
+                onClick={() => {
+                  console.log('AI 견적 템플릿 다운로드')
+                }}
+              >
+                AI 견적 템플릿
+              </Button>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={() => setIsTemplateDialogOpen(false)}
+            >
+              닫기
             </Button>
           </DialogFooter>
         </DialogContent>
