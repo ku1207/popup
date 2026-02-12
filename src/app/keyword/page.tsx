@@ -689,13 +689,13 @@ export default function KeywordPage() {
 
       {/* 템플릿 다운로드 팝업 */}
       <Dialog open={isTemplateDialogOpen} onOpenChange={setIsTemplateDialogOpen}>
-        <DialogContent className="max-w-[1000px]">
+        <DialogContent className="max-w-[1400px]">
           <DialogHeader>
             <DialogTitle className="text-lg">템플릿 다운로드</DialogTitle>
           </DialogHeader>
-          <div className="grid grid-cols-2 gap-6 py-6">
+          <div className="grid grid-cols-4 gap-4 py-6">
             {/* 전체순위 견적 카드 */}
-            <div className="bg-[#f5f5f5] rounded-lg p-6 flex flex-col">
+            <div className="bg-[#f5f5f5] rounded-lg p-5 flex flex-col">
               <h3 className="text-base font-medium mb-3">전체순위 견적</h3>
               <p className="text-sm text-gray-700 mb-4 flex-grow">
                 키워드별 1~10 순위까지의 입찰가를 조회합니다.
@@ -714,7 +714,7 @@ export default function KeywordPage() {
             </div>
 
             {/* 순위 견적 카드 */}
-            <div className="bg-[#f5f5f5] rounded-lg p-6 flex flex-col">
+            <div className="bg-[#f5f5f5] rounded-lg p-5 flex flex-col">
               <h3 className="text-base font-medium mb-3">순위 견적</h3>
               <p className="text-sm text-gray-700 mb-4 flex-grow">
                 원하는 순위의 입찰가를 조회합니다.
@@ -733,7 +733,7 @@ export default function KeywordPage() {
             </div>
 
             {/* 입찰가 견적 카드 */}
-            <div className="bg-[#f5f5f5] rounded-lg p-6 flex flex-col">
+            <div className="bg-[#f5f5f5] rounded-lg p-5 flex flex-col">
               <h3 className="text-base font-medium mb-3">입찰가 견적</h3>
               <p className="text-sm text-gray-700 mb-4 flex-grow">
                 특정 입찰가로 집행 시 예상 순위를 조회합니다.
@@ -752,7 +752,7 @@ export default function KeywordPage() {
             </div>
 
             {/* AI 견적 카드 */}
-            <div className="bg-[#f5f5f5] rounded-lg p-6 flex flex-col">
+            <div className="bg-[#f5f5f5] rounded-lg p-5 flex flex-col">
               <h3 className="text-base font-medium mb-3">AI 견적</h3>
               <p className="text-sm text-gray-700 mb-4 flex-grow">
                 AI를 통한 최적화 견적을 제공합니다.
