@@ -20,13 +20,6 @@ import {
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
 
 interface KeywordData {
   no: number
@@ -266,16 +259,20 @@ const keywordData: KeywordData[] = [
 
 export default function KeywordPage() {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [isAiDialogOpen, setIsAiDialogOpen] = useState(false)
   const [isDetailDialogOpen, setIsDetailDialogOpen] = useState(false)
   const [selectedItem, setSelectedItem] = useState<KeywordData | null>(null)
-  const [formData, setFormData] = useState({
+
+  // 일반 견적 등록 폼 데이터
+  const [regularFormData, setRegularFormData] = useState({
     taskName: '',
     file: null as File | null,
-    estimateMethod: '일반 견적',
-    // 일반 견적 필드
-    pcRank: '',
-    mobileRank: '',
-    // 최적 견적 필드
+  })
+
+  // AI 견적 등록 폼 데이터
+  const [aiFormData, setAiFormData] = useState({
+    taskName: '',
+    file: null as File | null,
     pcBudget: '',
     mobileBudget: '',
     optimizationCriteria: '클릭 최대화',
@@ -317,38 +314,54 @@ export default function KeywordPage() {
     }
   }
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // 일반 견적 핸들러
+  const handleRegularFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setFormData({ ...formData, file: e.target.files[0] })
+      setRegularFormData({ ...regularFormData, file: e.target.files[0] })
     }
   }
 
-  const handleSubmit = () => {
-    // 여기에 저장 로직 추가
-    console.log('Form submitted:', formData)
+  const handleRegularSubmit = () => {
+    console.log('Regular form submitted:', regularFormData)
     setIsDialogOpen(false)
-    // 폼 초기화
-    setFormData({
+    setRegularFormData({
       taskName: '',
       file: null,
-      estimateMethod: '일반 견적',
-      pcRank: '',
-      mobileRank: '',
+    })
+  }
+
+  const handleRegularCancel = () => {
+    setIsDialogOpen(false)
+    setRegularFormData({
+      taskName: '',
+      file: null,
+    })
+  }
+
+  // AI 견적 핸들러
+  const handleAiFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setAiFormData({ ...aiFormData, file: e.target.files[0] })
+    }
+  }
+
+  const handleAiSubmit = () => {
+    console.log('AI form submitted:', aiFormData)
+    setIsAiDialogOpen(false)
+    setAiFormData({
+      taskName: '',
+      file: null,
       pcBudget: '',
       mobileBudget: '',
       optimizationCriteria: '클릭 최대화',
     })
   }
 
-  const handleCancel = () => {
-    setIsDialogOpen(false)
-    // 폼 초기화
-    setFormData({
+  const handleAiCancel = () => {
+    setIsAiDialogOpen(false)
+    setAiFormData({
       taskName: '',
       file: null,
-      estimateMethod: '일반 견적',
-      pcRank: '',
-      mobileRank: '',
       pcBudget: '',
       mobileBudget: '',
       optimizationCriteria: '클릭 최대화',
@@ -391,7 +404,15 @@ export default function KeywordPage() {
               className="text-sm"
               onClick={() => setIsDialogOpen(true)}
             >
-              + 견적 등록
+              일반 견적 등록
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              className="text-sm"
+              onClick={() => setIsAiDialogOpen(true)}
+            >
+              AI 견적 등록
             </Button>
           </div>
         </div>
@@ -473,23 +494,23 @@ export default function KeywordPage() {
         </div>
       </div>
 
-      {/* 견적 등록 팝업 */}
+      {/* 일반 견적 등록 팝업 */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent className="sm:max-w-[600px]">
           <DialogHeader>
-            <DialogTitle className="text-lg">키워드 대량 견적 등록</DialogTitle>
+            <DialogTitle className="text-lg">일반 견적 등록</DialogTitle>
           </DialogHeader>
           <div className="grid gap-5 py-4">
             {/* 작업 이름 */}
             <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
-              <Label htmlFor="taskName" className="text-sm">
+              <Label htmlFor="regularTaskName" className="text-sm">
                 작업 이름
               </Label>
               <Input
-                id="taskName"
-                value={formData.taskName}
+                id="regularTaskName"
+                value={regularFormData.taskName}
                 onChange={(e) =>
-                  setFormData({ ...formData, taskName: e.target.value })
+                  setRegularFormData({ ...regularFormData, taskName: e.target.value })
                 }
                 placeholder="작업 이름을 입력해 주세요"
                 className="flex-1"
@@ -498,185 +519,162 @@ export default function KeywordPage() {
 
             {/* 파일업로드 */}
             <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
-              <Label htmlFor="fileUpload" className="text-sm">
+              <Label htmlFor="regularFileUpload" className="text-sm">
                 파일업로드
               </Label>
               <div className="flex-1">
                 <Input
-                  id="fileUpload"
+                  id="regularFileUpload"
                   type="file"
-                  onChange={handleFileChange}
+                  onChange={handleRegularFileChange}
                   className="cursor-pointer"
                 />
-                {formData.file && (
-                  <p className="text-sm text-gray-600 mt-1">{formData.file.name}</p>
+                {regularFormData.file && (
+                  <p className="text-sm text-gray-600 mt-1">{regularFormData.file.name}</p>
                 )}
               </div>
             </div>
-
-            {/* 견적 방식 */}
-            <div className="grid grid-cols-[120px_1fr] gap-4 items-start">
-              <Label className="text-sm pt-2">견적 방식</Label>
-              <RadioGroup
-                value={formData.estimateMethod}
-                onValueChange={(value) =>
-                  setFormData({ ...formData, estimateMethod: value })
-                }
-                className="flex flex-row gap-4"
-              >
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="일반 견적" id="normal" />
-                  <Label htmlFor="normal" className="font-normal cursor-pointer">
-                    일반 견적
-                  </Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="최적 견적" id="optimal" />
-                  <Label htmlFor="optimal" className="font-normal cursor-pointer">
-                    최적 견적
-                  </Label>
-                </div>
-              </RadioGroup>
-            </div>
-
-            {/* 일반 견적 조건부 필드 */}
-            {formData.estimateMethod === '일반 견적' && (
-              <>
-                <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
-                  <Label htmlFor="pcRank" className="text-sm">
-                    PC 순위
-                  </Label>
-                  <Select
-                    value={formData.pcRank}
-                    onValueChange={(value) =>
-                      setFormData({ ...formData, pcRank: value })
-                    }
-                  >
-                    <SelectTrigger id="pcRank" className="opacity-100">
-                      <SelectValue placeholder="PC 순위 선택" />
-                    </SelectTrigger>
-                    <SelectContent className="opacity-100 bg-white">
-                      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((rank) => (
-                        <SelectItem key={rank} value={rank.toString()} className="opacity-100">
-                          {rank}순위
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
-                  <Label htmlFor="mobileRank" className="text-sm">
-                    Mobile 순위
-                  </Label>
-                  <Select
-                    value={formData.mobileRank}
-                    onValueChange={(value) =>
-                      setFormData({ ...formData, mobileRank: value })
-                    }
-                  >
-                    <SelectTrigger id="mobileRank" className="opacity-100">
-                      <SelectValue placeholder="Mobile 순위 선택" />
-                    </SelectTrigger>
-                    <SelectContent className="opacity-100 bg-white">
-                      {[1, 2, 3, 4, 5].map((rank) => (
-                        <SelectItem key={rank} value={rank.toString()} className="opacity-100">
-                          {rank}순위
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-              </>
-            )}
-
-            {/* 최적 견적 조건부 필드 */}
-            {formData.estimateMethod === '최적 견적' && (
-              <>
-                <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
-                  <Label htmlFor="pcBudget" className="text-sm">
-                    PC 예산(원)
-                  </Label>
-                  <div className="flex-1">
-                    <Input
-                      id="pcBudget"
-                      type="number"
-                      value={formData.pcBudget}
-                      onChange={(e) =>
-                        setFormData({ ...formData, pcBudget: e.target.value })
-                      }
-                      placeholder="PC 예산을 입력하세요"
-                    />
-                    {formData.pcBudget && (
-                      <p className="text-sm text-gray-600 mt-1">
-                        {formatBudget(formData.pcBudget)}
-                      </p>
-                    )}
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
-                  <Label htmlFor="mobileBudget" className="text-sm">
-                    Mobile 예산(원)
-                  </Label>
-                  <div className="flex-1">
-                    <Input
-                      id="mobileBudget"
-                      type="number"
-                      value={formData.mobileBudget}
-                      onChange={(e) =>
-                        setFormData({ ...formData, mobileBudget: e.target.value })
-                      }
-                      placeholder="Mobile 예산을 입력하세요"
-                    />
-                    {formData.mobileBudget && (
-                      <p className="text-sm text-gray-600 mt-1">
-                        {formatBudget(formData.mobileBudget)}
-                      </p>
-                    )}
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-[120px_1fr] gap-4 items-start">
-                  <Label className="text-sm pt-2">최적화 기준</Label>
-                  <RadioGroup
-                    value={formData.optimizationCriteria}
-                    onValueChange={(value) =>
-                      setFormData({ ...formData, optimizationCriteria: value })
-                    }
-                    className="flex flex-row gap-4"
-                  >
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="클릭 최대화" id="click" />
-                      <Label
-                        htmlFor="click"
-                        className="font-normal cursor-pointer"
-                      >
-                        클릭 최대화
-                      </Label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="노출 최대화" id="impression" />
-                      <Label
-                        htmlFor="impression"
-                        className="font-normal cursor-pointer"
-                      >
-                        노출 최대화
-                      </Label>
-                    </div>
-                  </RadioGroup>
-                </div>
-              </>
-            )}
           </div>
           <DialogFooter className="gap-2">
             <Button
-              onClick={handleSubmit}
+              onClick={handleRegularSubmit}
               className="bg-[#50c0b5] hover:bg-[#45a89f] text-white"
             >
               저장
             </Button>
-            <Button variant="outline" onClick={handleCancel}>
+            <Button variant="outline" onClick={handleRegularCancel}>
+              취소
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* AI 견적 등록 팝업 */}
+      <Dialog open={isAiDialogOpen} onOpenChange={setIsAiDialogOpen}>
+        <DialogContent className="sm:max-w-[600px]">
+          <DialogHeader>
+            <DialogTitle className="text-lg">AI 견적 등록</DialogTitle>
+          </DialogHeader>
+          <div className="grid gap-5 py-4">
+            {/* 작업 이름 */}
+            <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
+              <Label htmlFor="aiTaskName" className="text-sm">
+                작업 이름
+              </Label>
+              <Input
+                id="aiTaskName"
+                value={aiFormData.taskName}
+                onChange={(e) =>
+                  setAiFormData({ ...aiFormData, taskName: e.target.value })
+                }
+                placeholder="작업 이름을 입력해 주세요"
+                className="flex-1"
+              />
+            </div>
+
+            {/* 파일업로드 */}
+            <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
+              <Label htmlFor="aiFileUpload" className="text-sm">
+                파일업로드
+              </Label>
+              <div className="flex-1">
+                <Input
+                  id="aiFileUpload"
+                  type="file"
+                  onChange={handleAiFileChange}
+                  className="cursor-pointer"
+                />
+                {aiFormData.file && (
+                  <p className="text-sm text-gray-600 mt-1">{aiFormData.file.name}</p>
+                )}
+              </div>
+            </div>
+
+            {/* PC 예산 */}
+            <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
+              <Label htmlFor="aiPcBudget" className="text-sm">
+                PC 예산(원)
+              </Label>
+              <div className="flex-1">
+                <Input
+                  id="aiPcBudget"
+                  type="number"
+                  value={aiFormData.pcBudget}
+                  onChange={(e) =>
+                    setAiFormData({ ...aiFormData, pcBudget: e.target.value })
+                  }
+                  placeholder="PC 예산을 입력하세요"
+                />
+                {aiFormData.pcBudget && (
+                  <p className="text-sm text-gray-600 mt-1">
+                    {formatBudget(aiFormData.pcBudget)}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            {/* Mobile 예산 */}
+            <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
+              <Label htmlFor="aiMobileBudget" className="text-sm">
+                Mobile 예산(원)
+              </Label>
+              <div className="flex-1">
+                <Input
+                  id="aiMobileBudget"
+                  type="number"
+                  value={aiFormData.mobileBudget}
+                  onChange={(e) =>
+                    setAiFormData({ ...aiFormData, mobileBudget: e.target.value })
+                  }
+                  placeholder="Mobile 예산을 입력하세요"
+                />
+                {aiFormData.mobileBudget && (
+                  <p className="text-sm text-gray-600 mt-1">
+                    {formatBudget(aiFormData.mobileBudget)}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            {/* 최적화 기준 */}
+            <div className="grid grid-cols-[120px_1fr] gap-4 items-start">
+              <Label className="text-sm pt-2">최적화 기준</Label>
+              <RadioGroup
+                value={aiFormData.optimizationCriteria}
+                onValueChange={(value) =>
+                  setAiFormData({ ...aiFormData, optimizationCriteria: value })
+                }
+                className="flex flex-row gap-4"
+              >
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="클릭 최대화" id="aiClick" />
+                  <Label
+                    htmlFor="aiClick"
+                    className="font-normal cursor-pointer"
+                  >
+                    클릭 최대화
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="노출 최대화" id="aiImpression" />
+                  <Label
+                    htmlFor="aiImpression"
+                    className="font-normal cursor-pointer"
+                  >
+                    노출 최대화
+                  </Label>
+                </div>
+              </RadioGroup>
+            </div>
+          </div>
+          <DialogFooter className="gap-2">
+            <Button
+              onClick={handleAiSubmit}
+              className="bg-[#50c0b5] hover:bg-[#45a89f] text-white"
+            >
+              저장
+            </Button>
+            <Button variant="outline" onClick={handleAiCancel}>
               취소
             </Button>
           </DialogFooter>
