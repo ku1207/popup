@@ -57,7 +57,7 @@ const keywordData: KeywordData[] = [
     no: 2,
     title: '키피티 제미나이 신규키워드',
     registeredAt: '2026-02-09 11:05',
-    estimateMethod: '최적 견적',
+    estimateMethod: 'AI 견적',
     author: 'admin@dmpkorea.co.kr',
     statusType: '완료',
     statusCount: '10건 성공',
@@ -84,7 +84,7 @@ const keywordData: KeywordData[] = [
     no: 4,
     title: '우리금융_특강경설',
     registeredAt: '2026-02-02 18:57',
-    estimateMethod: '최적 견적',
+    estimateMethod: 'AI 견적',
     author: 'adweb@adweb.co.kr',
     statusType: '완료',
     statusCount: '34건 성공',
@@ -124,7 +124,7 @@ const keywordData: KeywordData[] = [
     no: 7,
     title: 'ㅇㅇㅇ',
     registeredAt: '2026-01-29 17:41',
-    estimateMethod: '최적 견적',
+    estimateMethod: 'AI 견적',
     author: 'ad.sopd@adweb.co.kr',
     statusType: '완료',
     statusCount: '9건 성공',
@@ -151,7 +151,7 @@ const keywordData: KeywordData[] = [
     no: 9,
     title: '클라텍 바이오',
     registeredAt: '2026-01-29 17:20',
-    estimateMethod: '최적 견적',
+    estimateMethod: 'AI 견적',
     author: 'ad.sopd@adweb.co.kr',
     statusType: '완료',
     statusCount: '172건 성공',
@@ -178,7 +178,7 @@ const keywordData: KeywordData[] = [
     no: 11,
     title: '하나카드 브랜드_나라사랑카드_260129',
     registeredAt: '2026-01-29 16:57',
-    estimateMethod: '최적 견적',
+    estimateMethod: 'AI 견적',
     author: 'adweb@adweb.co.kr',
     statusType: '완료',
     statusCount: '8건 성공',
@@ -218,7 +218,7 @@ const keywordData: KeywordData[] = [
     no: 14,
     title: '테스트',
     registeredAt: '2026-01-29 16:35',
-    estimateMethod: '최적 견적',
+    estimateMethod: 'AI 견적',
     author: 'admin@dmpkorea.co.kr',
     statusType: '완료',
     statusCount: '1건 성공',
@@ -245,7 +245,7 @@ const keywordData: KeywordData[] = [
     no: 16,
     title: '명실상주톱',
     registeredAt: '2026-01-28 16:04',
-    estimateMethod: '최적 견적',
+    estimateMethod: 'AI 견적',
     author: 'adweb@adweb.co.kr',
     statusType: '완료',
     statusCount: '1172건 성공',
@@ -689,13 +689,13 @@ export default function KeywordPage() {
 
       {/* 템플릿 다운로드 팝업 */}
       <Dialog open={isTemplateDialogOpen} onOpenChange={setIsTemplateDialogOpen}>
-        <DialogContent className="max-w-[1000px]">
+        <DialogContent className="max-w-[1400px]">
           <DialogHeader>
             <DialogTitle className="text-lg">템플릿 다운로드</DialogTitle>
           </DialogHeader>
-          <div className="grid grid-cols-2 gap-6 py-6">
+          <div className="grid grid-cols-4 gap-4 py-6">
             {/* 전체순위 견적 카드 */}
-            <div className="bg-[#f5f5f5] rounded-lg p-6 flex flex-col">
+            <div className="bg-[#f5f5f5] rounded-lg p-5 flex flex-col">
               <h3 className="text-base font-medium mb-3">전체순위 견적</h3>
               <p className="text-sm text-gray-700 mb-4 flex-grow">
                 키워드별 1~10 순위까지의 입찰가를 조회합니다.
@@ -714,7 +714,7 @@ export default function KeywordPage() {
             </div>
 
             {/* 순위 견적 카드 */}
-            <div className="bg-[#f5f5f5] rounded-lg p-6 flex flex-col">
+            <div className="bg-[#f5f5f5] rounded-lg p-5 flex flex-col">
               <h3 className="text-base font-medium mb-3">순위 견적</h3>
               <p className="text-sm text-gray-700 mb-4 flex-grow">
                 원하는 순위의 입찰가를 조회합니다.
@@ -733,7 +733,7 @@ export default function KeywordPage() {
             </div>
 
             {/* 입찰가 견적 카드 */}
-            <div className="bg-[#f5f5f5] rounded-lg p-6 flex flex-col">
+            <div className="bg-[#f5f5f5] rounded-lg p-5 flex flex-col">
               <h3 className="text-base font-medium mb-3">입찰가 견적</h3>
               <p className="text-sm text-gray-700 mb-4 flex-grow">
                 특정 입찰가로 집행 시 예상 순위를 조회합니다.
@@ -752,7 +752,7 @@ export default function KeywordPage() {
             </div>
 
             {/* AI 견적 카드 */}
-            <div className="bg-[#f5f5f5] rounded-lg p-6 flex flex-col">
+            <div className="bg-[#f5f5f5] rounded-lg p-5 flex flex-col">
               <h3 className="text-base font-medium mb-3">AI 견적</h3>
               <p className="text-sm text-gray-700 mb-4 flex-grow">
                 AI를 통한 최적화 견적을 제공합니다.
@@ -831,8 +831,8 @@ export default function KeywordPage() {
                     </>
                   )}
 
-                {/* 최적 견적 */}
-                {selectedItem.estimateMethod === '최적 견적' &&
+                {/* AI 견적 */}
+                {selectedItem.estimateMethod === 'AI 견적' &&
                   selectedItem.estimateDetails && (
                     <>
                       <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
